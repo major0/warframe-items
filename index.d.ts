@@ -135,6 +135,7 @@ declare module 'warframe-items' {
         polarities?: Polarity[];
         stancePolarity?: Polarity;
         projectile?: Projectile;
+	pellet?: Pellet;
         tags?: Tag[];
         type?: Type;
         vaulted?: boolean;
@@ -149,6 +150,11 @@ declare module 'warframe-items' {
         estimatedVaultDate?: string;
         vaultDate?: string;
         releaseDate?: string;
+    }
+
+    interface Pellet {
+	name?: string;
+	count?: number;
     }
 
     interface Secondary {

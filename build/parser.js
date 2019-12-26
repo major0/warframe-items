@@ -674,6 +674,7 @@ class Parser {
     item.flight = wikiaItem.flight
     item.marketCost = wikiaItem.marketCost
     item.masteryReq = item.masteryReq || wikiaItem.mr
+    item.pellet = wikiaItem.pellet
     item.polarities = wikiaItem.polarities
     item.projectile = wikiaItem.projectile
     item.secondary = wikiaItem.secondary

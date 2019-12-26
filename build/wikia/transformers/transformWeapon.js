@@ -86,11 +86,6 @@ const transformWeapon = (oldWeapon, imageUrls) => {
       vaulted: (Traits || []).includes('Vaulted'),
       marketCost: Cost && Cost.MarketCost,
       bpCost: Cost && Cost.BPCost,
-      pellet: {
-        name: NormalAttack && NormalAttack.PelletName && String(NormalAttack.PelletName),
-        count: NormalAttack && ((NormalAttack.PelletCount && Number(NormalAttack.PelletCount)) ||
-          (NormalAttack.AttackName === 'Single Pellet' && 1))
-      },
       ...(NormalAttack && NormalAttack.Falloff) && {
         falloff: {
           start: NormalAttack.Falloff.StartRange && Number(NormalAttack.Falloff.StartRange),
@@ -141,6 +136,14 @@ const transformWeapon = (oldWeapon, imageUrls) => {
       damageTypes.forEach((damageType) => {
         newWeapon[damageType.toLowerCase()] = ChargeAttack.Damage[damageType] ? Number(ChargeAttack.Damage[damageType].toFixed(2).replace(/(\.[\d]+)0/, '$1')) : undefined
       })
+    }
+
+    if (NormalAttack && NormalAttack.PelletName) {
+      newWeapon.pellet = {
+        name: NormalAttack.PelletName && String(NormalAttack.PelletName),
+        count:(NormalAttack.PelletCount && Number(NormalAttack.PelletCount)) ||
+          (NormalAttack.AttackName === 'Single Pellet' && 1)
+      }
     }
 
     if (SecondaryAreaAttack) {
